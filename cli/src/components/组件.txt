@@ -1,0 +1,5 @@
+这里写的是一些.vue文件文件组成就是template和style和script标签组成，然后再script里面利用export default来导出这个模块让其他文件可以import这个组件。但是我们所有组件的引入就是在router的index.js文件里面
+app.vue里面就是直接写router-view和固定需要的用router-view这样就可以把其他组件展示在我们需要的组件，因为在router的index.js里面进行了配置，所以就可以展示出来。所有的文件都要export用到了使用到路由的时候子元素连接的时候必须要写父元素path/子元素path
+组件之间传递值可以利用组件index中的name属性;传递的时候  <router-link :to="{name:'test2',params:{name:'jiaoge',age:12}}">测试2</router-link>这样就可以在跳转的组件写{{$route.params.name}}+{{$route.params.age}}就可以接收到了，此中route-link就是中会被Vue转换成a标签因为是传递数据写成：to否则不写就不能传递过去。
+还有传值方式利用URL传值在index.js先配置传递的值就会在url里面传过去
+

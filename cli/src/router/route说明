@@ -1,0 +1,76 @@
+这是个配置组件路径的文件
+import Vue from 'vue'
+import Router from 'vue-router'
+import HelloWorld from '@/components/HelloWorld'
+import Test from '@/components/Test'
+import Test1 from '@/components/Test1'
+import Test2 from '@/components/Test2'
+import TestUrl from '@/components/TestUrl'
+import Error from '@/components/Error'
+import Counter from '@/components/Counter'
+因为有要使用的组件所以就从component文件夹里面将我们需要的组件引用进来
+Vue.use(Router)
+因为使用哪一个具体的文件夹就在这里面写上Vue.use所有的东西都是基于Vue所以都要导入Vue然后在写上其他导入的东西
+export default new Router({
+将这个对象暴露出去
+  mode: 'history',
+  就是去掉网址URL的“#”
+  routes: [
+  route里面是所以组件的路径
+    {
+      path: '/',
+      path表示跳转的时候路径在组件中利用      <router-link to="/">首页</router-link>就是path，当然所有的组件都会App.vue里面展示我们需要用一个router-view标签来给我们显示需要显示的组件
+      同时我们可以使用transition标签包裹住我们需要的router-view来控制我们的组件进入或者离开方法
+         <transition name="fade">
+            <router-view/>
+          </transition>
+          就是我们进入或者离开的方式可以在style里面定义就可以定义.fade-的样式，样式定义只有四种状态后缀是不会改变的。
+
+      name: 'HelloWorld',
+      component: HelloWorld
+    }, {
+      path: '/test',
+      name: 'Test',
+      name这个属性是在我们需要的组件之间传递值的时候使用
+      component: Test,
+      alias: '/abc',
+      alias是一个组件路径的别名
+      children: [
+      children表示子路由就是在这个路径中还可以继续跳转，需要用到了子路由的配置同时在父亲的.vue文件中的template中要写<router-view/>这样才能保证在父亲的路由中切换
+        {
+        子路由不会作为自己声明到route里面
+          path: 'test1',
+          name: 'test1',
+          component: Test1
+        }, {
+          path: 'test2',
+          name: 'test2',
+          component: Test2
+        }
+      ]
+    }, {
+      path: '/testurl/:userId(\\d+)/:userName',
+      name: 'testurl',
+      component: TestUrl,
+      beforeEnter是钩子函数在组件显示之前做的是同时必须调用next才可以执行组件显示
+      beforeEnter: (to, from, next) => {
+        // console.log(to);
+        // console.log(from);
+        next(true);//false
+      }
+    },
+    {
+      path: '/home/:userId(\\d+)/:userName',
+      redirect: '/testurl/:userId(\\d+)/:userName'
+    }, {
+      path: '*',
+      component: Error
+    }, {
+      path: '/counter',
+      name: 'counter',
+      component: Counter
+    }
+  ]
+})
+我们访问不同组件是通过更改URL路径来更改组件的显示
+路由就是.vue文件中的钩子函数可以在.vue文件的script的对象中引用或者在router里面的index.js里面的routes数组中的对象元素里面引入钩子函数就是这两种方法，但是因为引入钩子函数的地方不同就会有钩子函数的名称不同但是功能是一样的

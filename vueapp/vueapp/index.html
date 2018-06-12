@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>vueapp</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  <!--封代理，注册token，服务器代理。是bird有一个。有一个网站服务器代理，assets会打包assets相对地址，static只是copy进去，使用绝对地址-->
+  <!--<!vue里面不用jQuery&#45;&#45;绝对路径直接就从/文件名“/"代表绝对根&ndash;&gt;-->
+    <script>
+//      clientHeight过去可视区的高度
+//      scrolltop滚动条的高度
+//      scrollHeight整个内容 实际高度
+//      可以利用this.$router.push('/path路径')就进行跳转，$router.go就接受数字
+//      Vue中动态属性就是Vue变量作为属性一定要用：属性
+//      请求猫眼具体数据data里面定义了一个对象因为是一个具体的对象数据，
+//      v-text会覆盖原来的文本拼接"变量+'文本'"这样就保证了原来的文本。
+      /*在调用Vue方法的时候不写参数不用写()但是写参数就要写()*/
+      /*组件首字母大写，然后router-view是是否下面的组件是在我的页面上渲染，否则跳转新的就不写router-view，router-link是编译成a,每一个组件就是一个块在HTML里面描点链接
+      * 改router-link要写成a{样式}，有一个a.router-link-active就可以用点击时有样式自己设置，利用slot给组件的里的其他组件传递template里面的内容
+      * 组件间传值不同.vue文件之间传值以一个对象方式传递如果是样式用对象传递，子组件是被import的子组件要哦使用父组件的值在自己的export default里面声明props:[]属性，还要在自己被引用的组件上写接受的值如bg="11"在自己的里面就要写某一个值=”bg"在自己的对象里面写props:['bg']，这个表示组件接受的值
+      * 组件之间传值用props：[]组件之间传递HTML结构用slot
+      * ：key属性是唯一的：to="'字符串'+变量"这样实现传值
+      * Vue-aplayer也是一个组件使用的时候要import以后放在目标组件的components里。使用这个组件来播放这个就是Vue的音乐播放器，这个组件里面的数据是固定的所以给组件赋值的时候就要对应一样的数据格式，为什么要写成固定的就是因为他自己的props已经写成固定模式
+      * 组件先不渲染只有在mounted里面获取数据才显示因为是涉及数据的获取所以要先v-if隐藏否则没有获取数据就加载导致报错所以先v-if不显示，但是不涉及数据就不用v-if会造成负担
+      *    --save无论上线还是开发都用在package的dependency里面*/
+    </script>
+  </body>
+</html>
